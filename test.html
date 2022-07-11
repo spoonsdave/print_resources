@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Testing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+
+<body>
+    <table style="width:100%">
+        <tr>
+            <td style="text-align: left;" valign="top">
+
+                <div class="container">
+                    <h1>Testing</h1>
+
+                    <form>
+                        <p><label>Input: </label><input type="text" id="input"></p>
+
+                        <button>Calculate</button>
+                        <br></br>
+                        <div class="results"></div>
+
+                    </form>
+
+                    <script>
+                        const form = document.querySelector('form');
+                        form.addEventListener('submit', function (e) {
+                            e.preventDefault();
+                            const input = parseInt(document.querySelector('#input').value);
+                            const results = document.querySelector('#results');
+                            const output = eval(input);
+                            document.querySelector('.results').innerHTML = input + " = " + output;
+                        });
+                    </script>
+
+
+            </td>
+            <td style="text-align: right;" valign="top">
+                <p><strong>Notes</strong></p>
+                <textarea rows="25" cols="70" id="myID">
+        </textarea>
+                <script language="JavaScript" type="text/javascript">
+
+                    function vtbKeyPress(e) {
+                        if (vtbID == null) { return }
+                        if (!document.all) { if (e.which != 8 && e.which != 13) { return; } }
+                        else { if (event.keyCode != 8 && event.keyCode != 13) { return; } }
+                        document.getElementById(vtbID).value += '<br>'
+                    }
+
+                    if (!document.all) {
+                        document.captureEvents(Event.KEYDOWN)
+                    }
+
+                    document.onkeypress = vtbKeyPress
+
+
+                </script>
+            </td>
+        </tr>
+    </table>
+</body>
+
+
+
+
+<footer>
+    <table style="width:100%">
+        <tr>
+            <td style="text-align: left;">
+                <a href="index.html"><strong>
+                        <<< Go home</strong></a>
+            </td>
+
+            <td style="text-align: right;">
+                <strong>
+                    <div id="clockbox"></div>
+
+                    <script type="text/javascript">
+                        var tday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                        var tmonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+                        function GetClock() {
+                            var d = new Date();
+                            var nday = d.getDay(), nmonth = d.getMonth(), ndate = d.getDate();
+                            var nhour = d.getHours(), nmin = d.getMinutes(), nsec = d.getSeconds(), ap;
+
+                            if (nhour == 0) { ap = " AM"; nhour = 12; }
+                            else if (nhour < 12) { ap = " AM"; }
+                            else if (nhour == 12) { ap = " PM"; }
+                            else if (nhour > 12) { ap = " PM"; nhour -= 12; }
+
+                            if (nmin <= 9) nmin = "0" + nmin;
+                            if (nsec <= 9) nsec = "0" + nsec;
+
+                            var clocktext = "" + tday[nday] + " " + ndate + " " + tmonth[nmonth] + " - " + nhour + ":" + nmin + ":" + nsec + ap + "";
+                            document.getElementById('clockbox').innerHTML = clocktext;
+                        }
+
+                        GetClock();
+                        setInterval(GetClock, 1000);
+                    </script>
+                </strong>
+
+            </td>
+        </tr>
+    </table>
+
+
+</footer>
+
+</html>
