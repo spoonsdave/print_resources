@@ -13,10 +13,9 @@ form.addEventListener('submit', function (e) {
 
 
     const unitCost = (runOnPrice / runOn);
-    const setupCost = (quantityPrice - (unitCost * quantity))
-    const thouCost = (unitCost * 1000)
-    const required = (setupCost + (unitCost * requiredQuantity))
-
+    const setupCost = (quantityPrice - (unitCost * quantity));
+    const thouCost = (unitCost * 1000);
+    const required = (setupCost + (unitCost * requiredQuantity));
 
     const quantityDiff = (runOn - quantity);
     const priceDiff = (runOnPrice - quantityPrice);

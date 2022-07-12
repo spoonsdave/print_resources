@@ -15,14 +15,13 @@ form.addEventListener('submit', function (e) {
     const quantityDiff = (highestQuantity - lowestQuantity);
     const priceDiff = (highestQuantityPrice - lowestQuantityPrice);
     const unitCost = (priceDiff / quantityDiff);
-    const setupCost = (lowestQuantityPrice - (unitCost * lowestQuantity))
-    const thouCost = (unitCost * 1000)
-    const required = (setupCost + (unitCost * requiredQuantity))
+    const setupCost = (lowestQuantityPrice - (unitCost * lowestQuantity));
+    const thouCost = (unitCost * 1000);
+    const required = (setupCost + (unitCost * requiredQuantity));
 
     //display the results
 
-    document.querySelector('.results').innerHTML = "Setup Cost: £" + setupCost + "<br>" + "Unit Cost: £" + 
-    unitCost + "<br>" + "£/1000: £" + thouCost + "<br>" + requiredQuantity + ": £" + required;
+    document.querySelector('.results').innerHTML = "Setup Cost: £" + setupCost + "<br>" + "Unit Cost: £" + unitCost + "<br>" + "£/1000: £" + thouCost + "<br>" + requiredQuantity + ": £" + required;
 
 });
 
