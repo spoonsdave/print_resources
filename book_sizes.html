@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Standard Book Sizes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<div class="sidebar">
+    <div>
+        <h2>CALCULATORS</h2>
+    </div>
+    <div><a href="quantity2.html">Quantity Calculator</a></div>
+    <div><a href="runon.html">Run On Calculator</a></div>
+    <div><a href="spine.html">Spine Width Calculator</a></div>
+    <div><a href="weight.html">Weight Calculator</a></div>
+    <div><a href="paper_cost.html">Paper Cost Calculator</a></div>
+    <div><a href="sections.html">Section Calculator</a></div>
+    <div><a href="grid.html">Hardback Cover Grid Builder</a></div>
+    <div><a href="jacket.html">Hardback Jacket Grid Builder</a></div>
+    <div><a href="case_matrix.html">Hardback Price Calculator</a></div>
+    <div>
+        <h2>PHONE NUMBERS</h2>
+    </div>
+    <div><a href="staff_ext_tel.html">Staff Extension Phone Numbers</a></div>
+    <div><a href="speed_dial.html">Company Speed Dial Numbers</a></div>
+    <div>
+        <h2>MISC INFO</h2>
+    </div>
+    <div><a href="suppliers.html">Suppliers & Services</a></div>
+    <div><a href="machines.html">Machine Specs</a></div>
+    <div><a href="max_folding_weights.html">Max Folding Weights</a></div>
+    <div><a href="vatable.html">Is it VATable?</a></div>
+    <div><a href="book_sizes.html">Standard Book Sizes</a></div>
+    <div><a href="envelopes.html">Standard Envelope Sizes</a></div>
+    <div><a href="greetings_cards.html">Standard Greetings Card Sizes</a></div>
+</div>
+
+
+
+
+<div class="body-text">
+    <!-- body content -->
+    <h2>STANDARD BOOK SIZES</h2>
+
+
+    <table>
+        <tr>
+            <td style="padding-right:50px" align="left">A6</td>
+            <td style="padding-right:50px">148 x 105mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">A Format</td>
+            <td style="padding-right:50px">178 x 111mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">B Format (UK)</td>
+            <td style="padding-right:50px">198 x 129mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">B Format (US)</td>
+            <td style="padding-right:50px">203 x 127mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">A5</td>
+            <td style="padding-right:50px">210 x 148mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">Demy</td>
+            <td style="padding-right:50px">216 x 138mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">American Royal</td>
+            <td style="padding-right:50px">229 x 152mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">Royal</td>
+            <td style="padding-right:50px">234 x 156mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">Pinched Crown Quarto</td>
+            <td style="padding-right:50px">248 x 171mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">Crown Quarto</td>
+            <td style="padding-right:50px">246 x 189mm</td>
+        </tr>
+        <tr>
+            <td style="padding-right:50px" align="left">A4</td>
+            <td style="padding-right:50px">297 x 210mm</td>
+        </tr>
+    </table>
+
+
+
+
+</div>
+
+
+
+
+
+<footer>
+    <table style="width:100%">
+        <tr>
+            <td style="text-align: left;">
+                <a href="index.html">
+                    <H3><strong>
+                            <<< HOME</strong>
+                </a></H3>
+            </td>
+            <td style="text-align: right;">
+                <strong>
+                    <H3>
+                        <div id="clockbox"></div>
+                        <script type="text/javascript">
+                            var tday = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+                            var tmonth = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+                            function GetClock() {
+                                var d = new Date();
+                                var nday = d.getDay(), nmonth = d.getMonth(), ndate = d.getDate();
+                                var nhour = d.getHours(), nmin = d.getMinutes(), nsec = d.getSeconds(), ap;
+                                if (nhour == 0) { ap = " AM"; nhour = 12; }
+                                else if (nhour < 12) { ap = " AM"; }
+                                else if (nhour == 12) { ap = " PM"; }
+                                else if (nhour > 12) { ap = " PM"; nhour -= 12; }
+                                if (nmin <= 9) nmin = "0" + nmin;
+                                if (nsec <= 9) nsec = "0" + nsec;
+                                var clocktext = "" + tday[nday] + " " + ndate + " " + tmonth[nmonth] + " - " + nhour + ":" + nmin + ":" + nsec + ap + "";
+                                document.getElementById('clockbox').innerHTML = clocktext;
+                            }
+                            GetClock();
+                            setInterval(GetClock, 1000);
+                        </script>
+                </strong></H3>
+            </td>
+        </tr>
+    </table>
+</footer>
+
+</html>

@@ -1,0 +1,93 @@
+.sidebar {
+  height: 98.5%;
+  width: 250px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  background-color: lightgrey;
+  }
+  
+  .sidebar div {
+  padding: 8px;
+  font-size: 12px;
+  line-height: 120%
+  }
+  
+  .body-text {
+  margin-left: 270px;
+  font-size: 12px;
+  }
+  
+body {
+  font-family: 'Roboto Mono', monospace;
+/*  margin-bottom:175px; */
+}
+
+p {
+  font-size: 12px;
+  line-height: 80%;
+}
+
+h2 {
+  font-size: 13px;
+  color: darkblue;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 13px;
+  line-height: 80%;
+  font-weight: bold;
+}
+
+footer {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 100%;
+  position: fixed;
+  height: 40px;
+  bottom: 10px;
+  left: 25px;
+  right: 25px;
+  margin-bottom: 0px;
+  line-height: 80%;
+}
+
+a {
+  color: Black;
+}
+
+a:link { 
+  color: Black;
+  text-decoration: none; 
+} 
+
+a:hover { 
+  text-decoration: none; 
+  font-weight: bold;
+  color: darkblue;
+} 
+
+table {
+  font-size: 12px;
+  line-height: 150%;
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+}
+
+.results {
+  font-weight: bold;
+}
+
+/* NOTES - Box Size */
+
+table, th, td {
+  border-collapse: collapse;
+}
+
