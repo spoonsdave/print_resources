@@ -11,7 +11,6 @@ form.addEventListener('submit', function (e) {
     const results = document.querySelector('#results');
 
 
-
     const quantityDiff = (highestQuantity - lowestQuantity);
     const priceDiff = (highestQuantityPrice - lowestQuantityPrice);
     const unitCost = (priceDiff / quantityDiff);
@@ -19,6 +18,7 @@ form.addEventListener('submit', function (e) {
     const thouCost = (unitCost * 1000);
     const required = (setupCost + (unitCost * requiredQuantity));
 
+    
     //display the results
 
     document.querySelector('.results').innerHTML = "Setup Cost: £" + setupCost + "<br>" + "Unit Cost: £" + unitCost + "<br>" + "£/1000: £" + thouCost + "<br>" + requiredQuantity + ": £" + required;
