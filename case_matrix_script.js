@@ -9,6 +9,7 @@ form.addEventListener('submit', function (e) {
     const sections = parseInt(document.querySelector('#sections').value);
 
 
+    
 
     // --------------------------------------
 

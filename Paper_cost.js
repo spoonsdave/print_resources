@@ -3,6 +3,7 @@ const form = document.querySelector('form');
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
+    
     // INPUT
 
     const width = parseInt(document.querySelector('#width').value);

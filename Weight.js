@@ -43,6 +43,7 @@ const S1palletweight = Math.ceil((boxesperS1pallet * boxkg) + 10)
 
 
 
+
     //display the results
 
     document.querySelector('.results').innerHTML = bookweight + " gm per copy" + "<br>" +

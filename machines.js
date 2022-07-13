@@ -18,6 +18,7 @@ function fst() {
 }
 
 
+
 function perfect() {
   var x = document.getElementById("pbDIV");
   if (x.innerHTML === " ") {
