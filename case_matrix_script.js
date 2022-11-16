@@ -79,20 +79,6 @@ form.addEventListener('submit', function (e) {
 
 
 
-    function displayRound() {
-        var ele = document.getElementsByName('round');
-
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                return ele[i].value;
-        }
-    }
-
-    const round = displayRound();
-
-
-
-
     function displayDust() {
         var ele = document.getElementsByName('dust');
 
@@ -106,41 +92,6 @@ form.addEventListener('submit', function (e) {
 
 
 
-    function displayCorner() {
-        var ele = document.getElementsByName('corner');
-
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                return ele[i].value;
-        }
-    }
-
-    const corner = displayCorner();
-
-
-    function displayElastic() {
-        var ele = document.getElementsByName('elastic');
-
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                return ele[i].value;
-        }
-    }
-
-    const elastic = displayElastic();
-
-
-
-    function displayShrink() {
-        var ele = document.getElementsByName('shrink');
-
-        for (i = 0; i < ele.length; i++) {
-            if (ele[i].checked)
-                return ele[i].value;
-        }
-    }
-
-    const shrink = displayShrink();
 
 
 
@@ -150,9 +101,9 @@ form.addEventListener('submit', function (e) {
 
     const setup = () => {
         if (coverType == "ppc") {
-            return 137;
+            return 318;
         } else if (coverType == "wib") {
-            return 239;
+            return 393;
         }
     }
 

@@ -5,14 +5,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
     <meta charset="utf-8">
-    <title>Suppliers</title>
+    <title>Hardback Matrix UK</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="suppliers.js"></script>
 </head>
 
 
 <div class="sidebar">
-    <div><h2>CALCULATORS</h2></div>
+    <div>
+        <h2>CALCULATORS</h2>
+    </div>
     <div><a href="quantity2.html">Quantity Calculator</a></div>
     <div><a href="runon.html">Run On Calculator</a></div>
     <div><a href="spine.html">Spine Width Calculator</a></div>
@@ -45,110 +46,60 @@
 
 <div class="body-text">
     <!-- body content -->
-    <h2>SUPPLIERS & SERVICES</h2>
+    <h2>HARDBACK PRICE CALCULATOR - UK</h2>
 
-    <h4>
-        <p onclick="cased()" style="cursor:pointer;">Case Binding
-    </h4>
-    <div id="cased"> </div>
+    <form>
+        <p><label>Size: </label>
+            <input type="radio" name="size" value="A4" checked>A4
+            <input type="radio" name="size" value="A5">A5
+            <input type="radio" name="size" value="Inb">Inbetween
+        </p>
 
-    <h4>
-        <p onclick="crease()" style="cursor:pointer;">Creasing
-    </h4>
-    <div id="crease"> </div>
+        <p><label>Cover: </label>
+            <input type="radio" name="cover" value="ppc" checked>PPC
+            <input type="radio" name="cover" value="wib">Wibalin
+        </p>
+        <br>
+        <p><label>Endpapers: </label>
+            <input type="radio" name="ends" value="print" checked>Printed
+            <input type="radio" name="ends" value="white">White
+            <input type="radio" name="ends" value="colour">Coloured
+        </p>
 
-    <h4>
-        <p onclick="encaps()" style="cursor:pointer;">Encapsulating
-    </h4>
-    <div id="encaps"> </div>
+        <p><label>Foil: </label>
+            <input type="radio" name="foil" value="None" checked>None
+            <input type="radio" name="foil" value="FC">Front Cover (30%)
+            <input type="radio" name="foil" value="Spine">Spine
+            <input type="radio" name="foil" value="FCSpine">Front Cover & Spine
+        </p>
 
-    <h4>
-        <p onclick="envelopes()" style="cursor:pointer;">Envelopes
-    </h4>
-    <div id="envelopes"> </div>
 
-    <h4>
-        <p onclick="foiling()" style="cursor:pointer;">Foiling
-    </h4>
-    <div id="foiling"> </div>
+        <p><label><br><br><br>To work out the number of boxes & pallets:<br><br>
+                <br>No. of text pages: </label><input type="text" id="text_pp"></p>
+        <p><label>Text microns: </label><input type="text" id="text_mic"></p>
 
-    <h4>
-        <p onclick="folding()" style="cursor:pointer;">Folding
-    </h4>
-    <div id="folding"> </div>
+        <br>
 
-    <h4>
-        <p onclick="formes()" style="cursor:pointer;">Formes
-    </h4>
-    <div id="formes"> </div>
+        <p><label>Head and tail bands: </label>
+            <input type="checkbox" name="head" value="head">
+        </p>
 
-    <h4>
-        <p onclick="gumming()" style="cursor:pointer;">Gumming
-    </h4>
-    <div id="gumming"> </div>
+        <p><label>Ribbon marker: </label>
+            <input type="checkbox" name="ribbon" value="ribbon">
+        </p>
 
-    <h4>
-        <p onclick="handfin()" style="cursor:pointer;">Hand Finishing
-    </h4>
-    <div id="handfin"> </div>
-
-    <h4>
-        <p onclick="labels()" style="cursor:pointer;">Labels
-    </h4>
-    <div id="labels"> </div>
-
-    <h4>
-        <p onclick="laminate()" style="cursor:pointer;">Lamination
-    </h4>
-    <div id="laminate"> </div>
-
-    <h4>
-        <p onclick="ncr()" style="cursor:pointer;">NCR Sets
-    </h4>
-    <div id="ncr"> </div>
-
-    <h4>
-        <p onclick="padding()" style="cursor:pointer;">Padding
-    </h4>
-    <div id="padding"> </div>
-
-    <h4>
-        <p onclick="perfect()" style="cursor:pointer;">Perfect / PUR Binding
-    </h4>
-    <div id="perfect"> </div>
-
-    <h4>
-        <p onclick="spotuv()" style="cursor:pointer;">Spot UV Varnishing
-    </h4>
-    <div id="spotuv"> </div>
-
-    <h4>
-        <p onclick="slip()" style="cursor:pointer;">Slipcases
-    </h4>
-    <div id="slip"> </div>
-
-    <h4>
-        <p onclick="stitch()" style="cursor:pointer;">Saddle Stitching
-    </h4>
-    <div id="stitch"> </div>
-
-    <h4>
-        <p onclick="string()" style="cursor:pointer;">Stringing
-    </h4>
-    <div id="string"> </div>
-
-    <h4>
-        <p onclick="thread()" style="cursor:pointer;">Thread Sewing
-    </h4>
-    <div id="thread"> </div>
-
-    <h4>
-        <p onclick="wireo()" style="cursor:pointer;">Wire-o-binding
-    </h4>
-    <div id="wireo"> </div>
+        <p><label>Dustjacket: </label>
+            <input type="checkbox" name="dust" value="dust">
+        </p>
 
 
 
+        <button>Calculate</button>
+        <br></br>
+        <div class="results"></div>
+    </form>
+
+    <script src="case_matrix_script_uk.js"></script>
 
 </div>
 
@@ -188,7 +139,8 @@
                             GetClock();
                             setInterval(GetClock, 1000);
                         </script>
-                </strong></H3></td>
+                </strong></H3>
+            </td>
         </tr>
     </table>
 </footer>
