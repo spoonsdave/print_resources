@@ -9,6 +9,9 @@ form.addEventListener('submit', function (e) {
 
     // --------------------------------------
 
+    const sections = parseInt(document.querySelector('#sections').value);
+
+
 
     // INPUT SECTION
     const results = document.querySelector('#results');
@@ -217,8 +220,26 @@ form.addEventListener('submit', function (e) {
 
 
 
-    const totalRunCost = running + headband + ribbonmarker + roundback + dustjacket + shrinkruncost;
-    const totalSetupCost = setupCost;
+    const sewruncost = sections * 110
+
+
+    const sewsetup = () => {
+        if (sections > 0) {
+            return 40;
+        } else {
+            return 0;
+        }
+    }
+
+    const sewsetupcost = sewsetup();
+
+
+
+
+
+
+    const totalRunCost = running + headband + ribbonmarker + roundback + dustjacket + shrinkruncost + sewruncost;
+    const totalSetupCost = setupCost + sewsetupcost;
 
 
     // --------------------------------------
@@ -240,7 +261,8 @@ form.addEventListener('submit', function (e) {
         "Round and backed cost = £" + roundback + " per 1000<br>" +
         "Dustjacket cost = £" + dustjacket + " per 1000<br>" +
         "Shrinkwrapping cost = £" + shrinkruncost + " per 1000<br>" +
-        
+        "Sewing cost = £" + sewsetupcost + " setup + £" + sewruncost + " per 1000<br>" +
+
         "<br>Total setup cost = £" + totalSetupCost +
         "<br>Total running cost = £" + totalRunCost;
 });
