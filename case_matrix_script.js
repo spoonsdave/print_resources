@@ -6,10 +6,6 @@ const form = document.querySelector('form');
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const sections = parseInt(document.querySelector('#sections').value);
-
-
-    
 
     // --------------------------------------
 
@@ -79,6 +75,20 @@ form.addEventListener('submit', function (e) {
 
 
 
+    function displayRound() {
+        var ele = document.getElementsByName('round');
+
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+                return ele[i].value;
+        }
+    }
+
+    const round = displayRound();
+
+
+
+
     function displayDust() {
         var ele = document.getElementsByName('dust');
 
@@ -95,15 +105,28 @@ form.addEventListener('submit', function (e) {
 
 
 
+    function displayShrink() {
+        var ele = document.getElementsByName('shrink');
+
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+                return ele[i].value;
+        }
+    }
+
+    const shrink = displayShrink();
+
+
+
 
 
     // CALCULATIONS
 
     const setup = () => {
         if (coverType == "ppc") {
-            return 318;
+            return 118;
         } else if (coverType == "wib") {
-            return 393;
+            return 222;
         }
     }
 
@@ -113,17 +136,17 @@ form.addEventListener('submit', function (e) {
 
     const runcost = () => {
         if (size == "A4P" && coverType == "ppc") {
-            return 2100;
+            return 2050;
         } else if (size == "A4P" && coverType == "wib") {
-            return 2600;
+            return 2570;
         } else if (size == "A5P" && coverType == "ppc") {
-            return 1680;
+            return 1580;
         } else if (size == "A5P" && coverType == "wib") {
-            return 2160;
+            return 2020;
         } else if (size == "A4L" && coverType == "ppc") {
-            return 2260;
+            return 2160;
         } else if (size == "A4L" && coverType == "wib") {
-            return 2750;
+            return 2680;
         }
     }
     const running = runcost();
@@ -177,48 +200,7 @@ form.addEventListener('submit', function (e) {
     const dustjacket = dustcost();
 
 
-    const cornercost = () => {
-        if (corner == "corner") {
-            return 360;
-        } else {
-            return 0;
-        }
-    }
 
-    const roundcorner = cornercost();
-
-
-    const cornersetupcost = () => {
-        if (corner == "corner") {
-            return 369;
-        } else {
-            return 0;
-        }
-    }
-
-    const roundcornersetup = cornersetupcost();
-
-
-    const elasticcost = () => {
-        if (elastic == "elastic") {
-            return 320;
-        } else {
-            return 0;
-        }
-    }
-
-    const elasticruncost = elasticcost();
-
-
-    const elasticsetupcost = () => {
-        if (elastic == "elastic") {
-            return 244;
-        } else {
-            return 0;
-        }
-    }
-
-    const elasticsetupcosts = elasticsetupcost();
 
 
 
@@ -235,25 +217,8 @@ form.addEventListener('submit', function (e) {
 
 
 
-
-    const sewruncost = sections * 110
-
-
-    const sewsetup = () => {
-        if (sections > 0) {
-            return 40;
-        } else {
-            return 0;
-        }
-    }
-
-    const sewsetupcost = sewsetup();
-
-
-
-
-    const totalRunCost = running + headband + ribbonmarker + roundback + dustjacket + roundcorner + elasticruncost + shrinkruncost + sewruncost;
-    const totalSetupCost = setupCost + roundcornersetup + elasticsetupcosts + sewsetupcost;
+    const totalRunCost = running + headband + ribbonmarker + roundback + dustjacket + shrinkruncost;
+    const totalSetupCost = setupCost;
 
 
     // --------------------------------------
@@ -274,11 +239,7 @@ form.addEventListener('submit', function (e) {
         "Ribbon marker cost = £" + ribbonmarker + " per 1000<br>" +
         "Round and backed cost = £" + roundback + " per 1000<br>" +
         "Dustjacket cost = £" + dustjacket + " per 1000<br>" +
-        "Round Corner cost = £" + roundcornersetup + " setup + £" + roundcorner + " per 1000<br>" +
-        "Elastic closure cost = £" + elasticsetupcosts + " setup + £" + elasticruncost + " per 1000<br>" +
         "Shrinkwrapping cost = £" + shrinkruncost + " per 1000<br>" +
-        "Sewing cost = £" + sewsetupcost + " setup + £" + sewruncost + " per 1000<br>" +
-        
         
         "<br>Total setup cost = £" + totalSetupCost +
         "<br>Total running cost = £" + totalRunCost;
