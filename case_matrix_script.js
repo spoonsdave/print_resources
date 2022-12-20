@@ -9,7 +9,7 @@ form.addEventListener('submit', function (e) {
 
     // --------------------------------------
 
-    const sections = parseInt(document.querySelector('#sections').value);
+    const pages = parseInt(document.querySelector('#pages').value);
 
 
 
@@ -125,11 +125,22 @@ form.addEventListener('submit', function (e) {
 
     // CALCULATIONS
 
+
+
+
     const setup = () => {
-        if (coverType == "ppc") {
-            return 118;
-        } else if (coverType == "wib") {
-            return 222;
+        if (size == "A4P" && coverType == "ppc") {
+            return 241;
+        } else if (size == "A4P" && coverType == "wib") {
+            return 325;
+        } else if (size == "A5P" && coverType == "ppc") {
+            return 223;
+        } else if (size == "A5P" && coverType == "wib") {
+            return 297;
+        } else if (size == "A4L" && coverType == "ppc") {
+            return 246;
+        } else if (size == "A4L" && coverType == "wib") {
+            return 310;
         }
     }
 
@@ -137,26 +148,45 @@ form.addEventListener('submit', function (e) {
 
 
 
+
+
+
+
+
+
     const runcost = () => {
         if (size == "A4P" && coverType == "ppc") {
-            return 2050;
+            return 2030;
         } else if (size == "A4P" && coverType == "wib") {
-            return 2570;
+            return 2410;
         } else if (size == "A5P" && coverType == "ppc") {
-            return 1580;
+            return 1730;
         } else if (size == "A5P" && coverType == "wib") {
-            return 2020;
+            return 2120;
         } else if (size == "A4L" && coverType == "ppc") {
-            return 2160;
+            return 2080;
         } else if (size == "A4L" && coverType == "wib") {
-            return 2680;
+            return 2480;
         }
     }
     const running = runcost();
 
+
+    const headsetup = () => {
+        if (head == "head") {
+            return 11;
+        } else {
+            return 0;
+        }
+    }
+
+    const headsetupcost = headsetup();
+
+
+
     const headcost = () => {
         if (head == "head") {
-            return 330;
+            return 340;
         } else {
             return 0;
         }
@@ -167,9 +197,20 @@ form.addEventListener('submit', function (e) {
 
 
 
+    const ribbonsetup = () => {
+        if (ribbon == "ribbon") {
+            return 11;
+        } else {
+            return 0;
+        }
+    }
+
+    const ribbonsetupcost = ribbonsetup();
+
+
     const ribboncost = () => {
         if (ribbon == "ribbon") {
-            return 330;
+            return 380;
         } else {
             return 0;
         }
@@ -182,13 +223,25 @@ form.addEventListener('submit', function (e) {
 
     const roundcost = () => {
         if (round == "round") {
-            return 400;
+            return 660;
         } else {
             return 0;
         }
     }
 
     const roundback = roundcost();
+
+
+
+    const dustsetup = () => {
+        if (dust == "dust") {
+            return 16;
+        } else {
+            return 0;
+        }
+    }
+
+    const dustsetupcost = dustsetup();
 
 
 
@@ -201,7 +254,6 @@ form.addEventListener('submit', function (e) {
     }
 
     const dustjacket = dustcost();
-
 
 
 
@@ -220,12 +272,12 @@ form.addEventListener('submit', function (e) {
 
 
 
-    const sewruncost = sections * 110
+    const sewruncost = pages * 6.1
 
 
     const sewsetup = () => {
-        if (sections > 0) {
-            return 40;
+        if (pages > 0) {
+            return 33;
         } else {
             return 0;
         }
@@ -239,7 +291,7 @@ form.addEventListener('submit', function (e) {
 
 
     const totalRunCost = running + headband + ribbonmarker + roundback + dustjacket + shrinkruncost + sewruncost;
-    const totalSetupCost = setupCost + sewsetupcost;
+    const totalSetupCost = setupCost + sewsetupcost + headsetupcost + ribbonsetupcost + dustsetupcost;
 
 
     // --------------------------------------
@@ -256,11 +308,10 @@ form.addEventListener('submit', function (e) {
     document.querySelector('.results').innerHTML =
         "Setup cost = £" + setupCost + "<br>" +
         "Run cost = £" + running + " per 1000<br><br>" +
-        "Head and tail band cost = £" + headband + " per 1000<br>" +
-        "Ribbon marker cost = £" + ribbonmarker + " per 1000<br>" +
+        "Head and tail band cost = £" + headsetupcost + " setup + £" + headband + " per 1000<br>" +
+        "Ribbon marker cost = £" + ribbonsetupcost + " setup + £" + ribbonmarker + " per 1000<br>" +
         "Round and backed cost = £" + roundback + " per 1000<br>" +
-        "Dustjacket cost = £" + dustjacket + " per 1000<br>" +
-        "Shrinkwrapping cost = £" + shrinkruncost + " per 1000<br>" +
+        "Dustjacket cost = £" + dustsetupcost + " setup + £" + dustjacket + " per 1000<br>" +
         "Sewing cost = £" + sewsetupcost + " setup + £" + sewruncost + " per 1000<br>" +
 
         "<br>Total setup cost = £" + totalSetupCost +
