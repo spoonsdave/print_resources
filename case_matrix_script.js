@@ -49,6 +49,20 @@ form.addEventListener('submit', function (e) {
 
 
 
+    function displayEnds() {
+        var eleb = document.getElementsByName('endpapers');
+
+        for (i = 0; i < eleb.length; i++) {
+            if (eleb[i].checked)
+                return eleb[i].value;
+        }
+    }
+
+    const endsType = displayEnds();
+
+
+
+
 
     function displayHead() {
         var ele = document.getElementsByName('head');
@@ -196,6 +210,22 @@ form.addEventListener('submit', function (e) {
 
 
 
+    const endscost = () => {
+        if (endsType == "colour" && size == "A4P") {
+            return 260;
+        } else if (endsType == "colour" && size == "A4L") {
+            return 260;
+        } else if (endsType == "colour" && size == "A5P") {
+            return 120;
+        } else if (endsType == "colour" && size == "A5L") {
+            return 120;
+        } else {
+            return 0;
+        }
+    }
+
+const endsruncost = endscost();
+
 
     const ribbonsetup = () => {
         if (ribbon == "ribbon") {
@@ -290,7 +320,7 @@ form.addEventListener('submit', function (e) {
 
 
 
-    const totalRunCost = running + headband + ribbonmarker + roundback + dustjacket + shrinkruncost + sewruncost;
+    const totalRunCost = running + headband + ribbonmarker + roundback + dustjacket + shrinkruncost + sewruncost + endsruncost;
     const totalSetupCost = setupCost + sewsetupcost + headsetupcost + ribbonsetupcost + dustsetupcost;
 
 
@@ -308,6 +338,7 @@ form.addEventListener('submit', function (e) {
     document.querySelector('.results').innerHTML =
         "Setup cost = £" + setupCost + "<br>" +
         "Run cost = £" + running + " per 1000<br><br>" +
+        "Coloured Endpaper cost = £" + endsruncost + " per 1000<br>" +
         "Head and tail band cost = £" + headsetupcost + " setup + £" + headband + " per 1000<br>" +
         "Ribbon marker cost = £" + ribbonsetupcost + " setup + £" + ribbonmarker + " per 1000<br>" +
         "Round and backed cost = £" + roundback + " per 1000<br>" +
