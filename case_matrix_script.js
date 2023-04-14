@@ -144,17 +144,29 @@ form.addEventListener('submit', function (e) {
 
     const setup = () => {
         if (size == "A4P" && coverType == "ppc") {
-            return 241;
+            return 157;
         } else if (size == "A4P" && coverType == "wib") {
-            return 325;
+            return 222;
         } else if (size == "A5P" && coverType == "ppc") {
-            return 223;
+            return 157;
         } else if (size == "A5P" && coverType == "wib") {
-            return 297;
+            return 222;
         } else if (size == "A4L" && coverType == "ppc") {
-            return 246;
+            return 157;
         } else if (size == "A4L" && coverType == "wib") {
-            return 310;
+            return 222;
+        } else if (size == "A5L" && coverType == "ppc") {
+            return 157;
+        } else if (size == "A5L" && coverType == "wib") {
+            return 222;
+        } else if (size == "ROP" && coverType == "ppc") {
+            return 157;
+        } else if (size == "ROP" && coverType == "wib") {
+            return 222;
+        } else if (size == "ROL" && coverType == "ppc") {
+            return 157;
+        } else if (size == "ROL" && coverType == "wib") {
+            return 222;
         }
     }
 
@@ -170,17 +182,29 @@ form.addEventListener('submit', function (e) {
 
     const runcost = () => {
         if (size == "A4P" && coverType == "ppc") {
-            return 2030;
+            return 1785;
         } else if (size == "A4P" && coverType == "wib") {
-            return 2410;
+            return 2095;
         } else if (size == "A5P" && coverType == "ppc") {
-            return 1730;
+            return 1386;
         } else if (size == "A5P" && coverType == "wib") {
-            return 2120;
+            return 1696;
         } else if (size == "A4L" && coverType == "ppc") {
-            return 2080;
+            return 1815;
         } else if (size == "A4L" && coverType == "wib") {
-            return 2480;
+            return 2125;
+        } else if (size == "A5L" && coverType == "ppc") {
+            return 1416;
+        } else if (size == "A5L" && coverType == "wib") {
+            return 1726;
+        } else if (size == "ROP" && coverType == "ppc") {
+            return 1462;
+        } else if (size == "ROP" && coverType == "wib") {
+            return 1772;
+        } else if (size == "ROL" && coverType == "ppc") {
+            return 1492;
+        } else if (size == "ROL" && coverType == "wib") {
+            return 1802;
         }
     }
     const running = runcost();
@@ -188,7 +212,7 @@ form.addEventListener('submit', function (e) {
 
     const headsetup = () => {
         if (head == "head") {
-            return 11;
+            return 5;
         } else {
             return 0;
         }
@@ -200,7 +224,7 @@ form.addEventListener('submit', function (e) {
 
     const headcost = () => {
         if (head == "head") {
-            return 340;
+            return 320;
         } else {
             return 0;
         }
@@ -214,17 +238,21 @@ form.addEventListener('submit', function (e) {
         if (endsType == "colour" && size == "A4P") {
             return 260;
         } else if (endsType == "colour" && size == "A4L") {
-            return 260;
+            return 370;
         } else if (endsType == "colour" && size == "A5P") {
             return 120;
         } else if (endsType == "colour" && size == "A5L") {
+            return 140;
+        } else if (endsType == "colour" && size == "ROP") {
             return 120;
+        } else if (endsType == "colour" && size == "ROL") {
+            return 140;
         } else {
             return 0;
         }
     }
 
-const endsruncost = endscost();
+    const endsruncost = endscost();
 
 
     const ribbonsetup = () => {
@@ -240,7 +268,7 @@ const endsruncost = endscost();
 
     const ribboncost = () => {
         if (ribbon == "ribbon") {
-            return 380;
+            return 360;
         } else {
             return 0;
         }
@@ -265,7 +293,7 @@ const endsruncost = endscost();
 
     const dustsetup = () => {
         if (dust == "dust") {
-            return 16;
+            return 11;
         } else {
             return 0;
         }
@@ -277,7 +305,7 @@ const endsruncost = endscost();
 
     const dustcost = () => {
         if (dust == "dust") {
-            return 170;
+            return 150;
         } else {
             return 0;
         }
@@ -302,12 +330,12 @@ const endsruncost = endscost();
 
 
 
-    const sewruncost = pages * 6.1
+    const sewruncost = pages * 5
 
 
     const sewsetup = () => {
         if (pages > 0) {
-            return 33;
+            return 15;
         } else {
             return 0;
         }
@@ -329,6 +357,71 @@ const endsruncost = endscost();
 
 
 
+    // ONLY DISPLAY POSITIVE RESULTS
+
+
+    const end_results = () => {
+        if (endsruncost == 0) {
+            return "";
+        } else {
+            return "Coloured Endpaper cost = £" + endsruncost + " per 1000<br>";
+        }
+    }
+    const show_end_results = end_results();
+
+    const head_results = () => {
+        if (headsetupcost == 0) {
+            return "";
+        } else {
+            return "Head and tail band cost = £" + headsetupcost + " setup + £" + headband + " per 1000<br>";
+        }
+    }
+    const show_head_results = head_results();
+
+    const ribbon_results = () => {
+        if (ribbonsetupcost == 0) {
+            return "";
+        } else {
+            return "Ribbon marker cost = £" + ribbonsetupcost + " setup + £" + ribbonmarker + " per 1000<br>";
+        }
+    }
+    const show_ribbon_results = ribbon_results();
+
+    const roundback_results = () => {
+        if (roundback == 0) {
+            return "";
+        } else {
+            return "Round and backed cost = £" + roundback + " per 1000<br>";
+        }
+    }
+    const show_roundback_results = roundback_results();
+
+    const dust_results = () => {
+        if (dustsetupcost == 0) {
+            return "";
+        } else {
+            return "Dustjacket cost = £" + dustsetupcost + " setup + £" + dustjacket + " per 1000<br>";
+        }
+    }
+    const show_dust_results = dust_results();
+
+    const sew_results = () => {
+        if (sewsetupcost == 0) {
+            return "";
+        } else {
+            return "Sewing cost = £" + sewsetupcost + " setup + £" + sewruncost + " per 1000<br>";
+        }
+    }
+    const show_sew_results = sew_results();
+
+
+
+
+    // --------------------------------------
+
+
+
+
 
 
     // DISPLAY THE RESULTS SECTION
@@ -338,13 +431,9 @@ const endsruncost = endscost();
     document.querySelector('.results').innerHTML =
         "Setup cost = £" + setupCost + "<br>" +
         "Run cost = £" + running + " per 1000<br><br>" +
-        "Coloured Endpaper cost = £" + endsruncost + " per 1000<br>" +
-        "Head and tail band cost = £" + headsetupcost + " setup + £" + headband + " per 1000<br>" +
-        "Ribbon marker cost = £" + ribbonsetupcost + " setup + £" + ribbonmarker + " per 1000<br>" +
-        "Round and backed cost = £" + roundback + " per 1000<br>" +
-        "Dustjacket cost = £" + dustsetupcost + " setup + £" + dustjacket + " per 1000<br>" +
-        "Sewing cost = £" + sewsetupcost + " setup + £" + sewruncost + " per 1000<br>" +
-
+        show_end_results + show_head_results + show_ribbon_results + show_roundback_results + show_dust_results +
+        show_sew_results +
+        
         "<br>Total setup cost = £" + totalSetupCost +
         "<br>Total running cost = £" + totalRunCost;
 });
