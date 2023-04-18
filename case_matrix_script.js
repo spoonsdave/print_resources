@@ -49,6 +49,19 @@ form.addEventListener('submit', function (e) {
 
 
 
+    function displayPages() {
+        var eleb = document.getElementsByName('pages');
+
+        for (i = 0; i < eleb.length; i++) {
+            if (eleb[i].checked)
+                return eleb[i].value;
+        }
+    }
+
+    const nopp = displayPages();
+
+
+
     function displayEnds() {
         var eleb = document.getElementsByName('endpapers');
 
@@ -181,30 +194,59 @@ form.addEventListener('submit', function (e) {
 
 
     const runcost = () => {
-        if (size == "A4P" && coverType == "ppc") {
+        if (size == "A4P" && coverType == "ppc" && nopp == "320") {
             return 1785;
-        } else if (size == "A4P" && coverType == "wib") {
+        } else if (size == "A4P" && coverType == "wib" && nopp == "320") {
             return 2095;
-        } else if (size == "A5P" && coverType == "ppc") {
+        } else if (size == "A5P" && coverType == "ppc" && nopp == "320") {
             return 1386;
-        } else if (size == "A5P" && coverType == "wib") {
+        } else if (size == "A5P" && coverType == "wib" && nopp == "320") {
             return 1696;
-        } else if (size == "A4L" && coverType == "ppc") {
+        } else if (size == "A4L" && coverType == "ppc" && nopp == "320") {
             return 1815;
-        } else if (size == "A4L" && coverType == "wib") {
+        } else if (size == "A4L" && coverType == "wib" && nopp == "320") {
             return 2125;
-        } else if (size == "A5L" && coverType == "ppc") {
+        } else if (size == "A5L" && coverType == "ppc" && nopp == "320") {
             return 1416;
-        } else if (size == "A5L" && coverType == "wib") {
+        } else if (size == "A5L" && coverType == "wib" && nopp == "320") {
             return 1726;
-        } else if (size == "ROP" && coverType == "ppc") {
+        } else if (size == "ROP" && coverType == "ppc" && nopp == "320") {
             return 1462;
-        } else if (size == "ROP" && coverType == "wib") {
+        } else if (size == "ROP" && coverType == "wib" && nopp == "320") {
             return 1772;
-        } else if (size == "ROL" && coverType == "ppc") {
+        } else if (size == "ROL" && coverType == "ppc" && nopp == "320") {
             return 1492;
-        } else if (size == "ROL" && coverType == "wib") {
+        } else if (size == "ROL" && coverType == "wib" && nopp == "320") {
             return 1802;
+
+
+        } else if (size == "A4P" && coverType == "ppc" && nopp == "640") {
+            return 2035;
+        } else if (size == "A4P" && coverType == "wib" && nopp == "640") {
+            return 2345;
+        } else if (size == "A5P" && coverType == "ppc" && nopp == "640") {
+            return 1606;
+        } else if (size == "A5P" && coverType == "wib" && nopp == "640") {
+            return 1916;
+        } else if (size == "A4L" && coverType == "ppc" && nopp == "640") {
+            return 2095;
+        } else if (size == "A4L" && coverType == "wib" && nopp == "640") {
+            return 2405;
+        } else if (size == "A5L" && coverType == "ppc" && nopp == "640") {
+            return 1666;
+        } else if (size == "A5L" && coverType == "wib" && nopp == "640") {
+            return 1976;
+        } else if (size == "ROP" && coverType == "ppc" && nopp == "640") {
+            return 1682;
+        } else if (size == "ROP" && coverType == "wib" && nopp == "640") {
+            return 1992;
+        } else if (size == "ROL" && coverType == "ppc" && nopp == "640") {
+            return 1742;
+        } else if (size == "ROL" && coverType == "wib" && nopp == "640") {
+            return 2052;
+
+
+
         }
     }
     const running = runcost();
@@ -433,7 +475,7 @@ form.addEventListener('submit', function (e) {
         "Run cost = £" + running + " per 1000<br><br>" +
         show_end_results + show_head_results + show_ribbon_results + show_roundback_results + show_dust_results +
         show_sew_results +
-        
+
         "<br>Total setup cost = £" + totalSetupCost +
         "<br>Total running cost = £" + totalRunCost;
 });
