@@ -423,19 +423,19 @@ form.addEventListener('submit', function (e) {
 
         + "<br><br>" + quantity + ": £" + quantity1_cost
         + "<br>Number of boxes = " + no_of_boxes1
-        + "<br>Number of pallets = " + no_of_pallets1
+        + " / Number of pallets = " + no_of_pallets1
 
         + "<br><br>" + quantity2 + ": £" + quantity2_cost
         + "<br>Number of boxes = " + no_of_boxes2
-        + "<br>Number of pallets = " + no_of_pallets2
+        + " / Number of pallets = " + no_of_pallets2
 
         + "<br><br>" + quantity3 + ": £" + quantity3_cost
         + "<br>Number of boxes = " + no_of_boxes3
-        + "<br>Number of pallets = " + no_of_pallets3
+        + " / Number of pallets = " + no_of_pallets3
 
         + "<br><br>" + quantity4 + ": £" + quantity4_cost
         + "<br>Number of boxes = " + no_of_boxes4
-        + "<br>Number of pallets = " + no_of_pallets4
+        + " / Number of pallets = " + no_of_pallets4
 
         ;
 });
