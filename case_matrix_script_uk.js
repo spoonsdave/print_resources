@@ -118,9 +118,10 @@ form.addEventListener('submit', function (e) {
     const text_pp = parseInt(document.querySelector('#text_pp').value);
     const text_mic = parseInt(document.querySelector('#text_mic').value);
 
-
-
-
+    const quantity = parseInt(document.querySelector('#quantity').value);
+    const quantity2 = parseInt(document.querySelector('#quantity2').value);
+    const quantity3 = parseInt(document.querySelector('#quantity3').value);
+    const quantity4 = parseInt(document.querySelector('#quantity4').value);
 
 
 
@@ -170,16 +171,14 @@ form.addEventListener('submit', function (e) {
     // Boxes and Delivery Costs
     const fileCopies_delivery = 18
     const pallet_delivery = 60
-    const box = 0.50
+    const box = 0.60
 
     // Spine thickness
     const spine = Math.round(((text_pp * text_mic) / 2000) + 3);
 
-    // Boxes + Pallets - 1000 books =
-    const deliveryMR = 78
+    // Boxes + Pallets
 
     const no_in_a_box = 152 / (spine)
-
 
     const actual_no_in_a_box = () => {
         if (size == "A4") {
@@ -191,14 +190,6 @@ form.addEventListener('submit', function (e) {
         }
     }
     const final_no_in_a_box = actual_no_in_a_box();
-
-    const box_no = Math.round(1000 / final_no_in_a_box)
-    const box_cost = Math.round(box_no * 1.75)
-
-
-
-
-
 
 
 
@@ -219,7 +210,7 @@ form.addEventListener('submit', function (e) {
             return InbWib;
         }
     }
-    const running = runcost();
+    const unitcost = runcost();
 
 
     const ends_cost = () => {
@@ -333,67 +324,81 @@ form.addEventListener('submit', function (e) {
 
 
 
-
-    const totalSetupCost = makeready + dust_MR + foilsetup + deliveryMR;
-    const totalRunCost = running + endpaper_cost + headband + ribbonmarker + dust_run + foilrun + (box_cost / 1000);
-
-
     // --------------------------------------
 
 
 
-    // ONLY DISPLAY POSITIVE RESULTS
+    //  QUANTITY 1
+
+    const no_of_boxes1 = Math.ceil(quantity / final_no_in_a_box)
+    const no_of_pallets1 = Math.ceil(no_of_boxes1 / 48)
+    const total_box_cost1 = (no_of_boxes1 * box)
+
+    const quantity1_cost = (
+        + Math.ceil(makeready + (unitcost * quantity)
+            + total_box_cost1
+            + fileCopies_delivery
+            + (no_of_pallets1 * pallet_delivery)
+            + (endpaper_cost * quantity)
+            + (ribbonmarker * quantity)
+            + (headband * quantity)
+            + (dust_run * quantity)
+            + dust_MR));
+
+    //  QUANTITY 2
+
+    const no_of_boxes2 = Math.ceil(quantity2 / final_no_in_a_box)
+    const no_of_pallets2 = Math.ceil(no_of_boxes2 / 48)
+    const total_box_cost2 = (no_of_boxes2 * box)
+
+    const quantity2_cost = (
+        + Math.ceil(makeready + (unitcost * quantity2)
+            + total_box_cost2
+            + fileCopies_delivery
+            + (no_of_pallets2 * pallet_delivery)
+            + (endpaper_cost * quantity2)
+            + (ribbonmarker * quantity2)
+            + (headband * quantity2)
+            + (dust_run * quantity2)
+            + dust_MR));
+
+    //  QUANTITY 3
+
+    const no_of_boxes3 = Math.ceil(quantity3 / final_no_in_a_box)
+    const no_of_pallets3 = Math.ceil(no_of_boxes3 / 48)
+    const total_box_cost3 = (no_of_boxes3 * box)
+
+    const quantity3_cost = (
+        + Math.ceil(makeready + (unitcost * quantity3)
+            + total_box_cost3
+            + fileCopies_delivery
+            + (no_of_pallets3 * pallet_delivery)
+            + (endpaper_cost * quantity3)
+            + (ribbonmarker * quantity3)
+            + (headband * quantity3)
+            + (dust_run * quantity3)
+            + dust_MR));
+
+    //  QUANTITY 4
+
+    const no_of_boxes4 = Math.ceil(quantity4 / final_no_in_a_box)
+    const no_of_pallets4 = Math.ceil(no_of_boxes4 / 48)
+    const total_box_cost4 = (no_of_boxes4 * box)
+
+    const quantity4_cost = (
+        + Math.ceil(makeready + (unitcost * quantity4)
+            + total_box_cost4
+            + fileCopies_delivery
+            + (no_of_pallets4 * pallet_delivery)
+            + (endpaper_cost * quantity4)
+            + (ribbonmarker * quantity4)
+            + (headband * quantity4)
+            + (dust_run * quantity4)
+            + dust_MR));
 
 
-    const end_results = () => {
-        if (endpaper_cost == 0) {
-            return "";
-        } else {
-            return "Endpaper cost = £" + (endpaper_cost * 1000) + "<br>";
-        }
-    }
-    const show_end_results = end_results();
 
 
-
-    const foil_results = () => {
-        if (foilsetup == 0) {
-            return "";
-        } else {
-            return "Foil cost = £" + foilsetup + " setup + £" + (foilrun * 1000) + " per 1000<br>";
-        }
-    }
-    const show_foil_results = foil_results();
-
-
-    const head_results = () => {
-        if (headband == 0) {
-            return "";
-        } else {
-            return "Head and tail band cost = £" + (headband * 1000) + " per 1000<br>";
-        }
-    }
-    const show_head_results = head_results();
-
-
-    const ribbon_results = () => {
-        if (ribbonmarker == 0) {
-            return "";
-        } else {
-            return "Ribbon marker cost = £" + (ribbonmarker * 1000) + " per 1000<br>";
-        }
-    }
-    const show_ribbon_results = ribbon_results();
-
-
-    const dust_results = () => {
-        if (dust_MR == 0) {
-            return "";
-        } else {
-            return "Dustjacket cost = £" + dust_MR + " setup + £" + (dust_run * 1000) + " per 1000<br>";
-        }
-    }
-    const show_dust_results = dust_results();
 
 
 
@@ -403,19 +408,41 @@ form.addEventListener('submit', function (e) {
     // DISPLAY THE RESULTS SECTION
 
 
-
     document.querySelector('.results').innerHTML =
-        "Setup cost = £" + makeready + "<br>" +
-        "Run cost = £" + (running * 1000) + " per 1000<br><br>" +
-        //        "Endpaper cost = £" + (endpaper_cost * 1000) +
-        show_end_results + show_foil_results + show_head_results + show_ribbon_results + show_dust_results +
 
-        "<br>Delivery cost = £ " + deliveryMR + " setup + £" + box_cost + " per 1000<br>" +
+        "<br>Make Ready = £" + makeready
+        + "<br>Unit Cost = £" + unitcost
+        + "<br>Foil Blocks + Make Ready = £" + foilsetup
+        + "<br>Foil Unit Cost = £" + foilrun
+        + "<br>Endpaper Unit Cost = £" + endpaper_cost
+        + "<br>Ribbon Marker Unit Cost = £" + ribbonmarker
+        + "<br>Head & Tail Bands Unit Cost = £" + headband
+        + "<br>Dustjacket Unit Cost = £" + dust_run
+        + "<br>Dustjacket Setup = £" + dust_MR
+        + "<br>"
 
-        "<br>Total setup cost = £" + totalSetupCost +
-        "<br>Total running cost = £" + Math.round(totalRunCost * 1000)
+        + "<br><br>" + quantity + ": £" + quantity1_cost
+        + "<br>Number of boxes = " + no_of_boxes1
+        + "<br>Number of pallets = " + no_of_pallets1
+
+        + "<br><br>" + quantity2 + ": £" + quantity2_cost
+        + "<br>Number of boxes = " + no_of_boxes2
+        + "<br>Number of pallets = " + no_of_pallets2
+
+        + "<br><br>" + quantity3 + ": £" + quantity3_cost
+        + "<br>Number of boxes = " + no_of_boxes3
+        + "<br>Number of pallets = " + no_of_pallets3
+
+        + "<br><br>" + quantity4 + ": £" + quantity4_cost
+        + "<br>Number of boxes = " + no_of_boxes4
+        + "<br>Number of pallets = " + no_of_pallets4
+
         ;
 });
+
+
+
+
 
 
 
