@@ -401,6 +401,55 @@ form.addEventListener('submit', function (e) {
 
 
 
+    // FORMULA TO SHOW OR HIDE RESULTS 
+
+    const foil_results = () => {
+        if (foilsetup == 0) {
+            return "";
+        } else {
+            return "<br>Foil Blocks + Make Ready = £" + foilsetup
+                + "<br>Foil Unit Cost = £" + foilrun
+        }
+    }
+    const show_foil_results = foil_results();
+
+    const ends_results = () => {
+        if (endpaper_cost == 0) {
+            return "";
+        } else {
+            return "<br>Endpaper Unit Cost = £" + endpaper_cost
+        }
+    }
+    const show_ends_results = ends_results();
+
+    const ribbon_results = () => {
+        if (ribbonmarker == 0) {
+            return "";
+        } else {
+            return "<br>Ribbon Marker Unit Cost = £" + ribbonmarker
+        }
+    }
+    const show_ribbon_results = ribbon_results();
+
+    const head_results = () => {
+        if (headband == 0) {
+            return "";
+        } else {
+            return "<br>Head & Tail Bands Unit Cost = £" + headband
+        }
+    }
+    const show_head_results = head_results();
+
+    const dust_results = () => {
+        if (dust_run == 0) {
+            return "";
+        } else {
+            return "<br>Dustjacket Unit Cost = £" + dust_run
+            + "<br>Dustjacket Setup = £" + dust_MR
+        }
+    }
+    const show_dust_results = dust_results();
+
 
 
 
@@ -412,13 +461,11 @@ form.addEventListener('submit', function (e) {
 
         "<br>Make Ready = £" + makeready
         + "<br>Unit Cost = £" + unitcost
-        + "<br>Foil Blocks + Make Ready = £" + foilsetup
-        + "<br>Foil Unit Cost = £" + foilrun
-        + "<br>Endpaper Unit Cost = £" + endpaper_cost
-        + "<br>Ribbon Marker Unit Cost = £" + ribbonmarker
-        + "<br>Head & Tail Bands Unit Cost = £" + headband
-        + "<br>Dustjacket Unit Cost = £" + dust_run
-        + "<br>Dustjacket Setup = £" + dust_MR
+        + show_foil_results
+        + show_ends_results
+        + show_ribbon_results
+        + show_head_results
+        + show_dust_results
         + "<br>"
 
         + "<br><br>" + quantity + ": £" + quantity1_cost
