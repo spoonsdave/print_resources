@@ -41,22 +41,105 @@
 
 
 
-<div class="body-text">
-    <!-- body content -->
-    <h2>SECTION CALCULATOR</h2>
 
-    <form>
-        <p><label>Number of Pages: </label><input type="text" id="pagesIN"></p>
-        <button>Calculate</button>
-        <br></br>
-        <div class="results"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Section Calculator</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results p {
+            margin: 5px 0;
+        }
+        .scenario {
+            margin-bottom: 20px;
+        }
+        .remaining-pages {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Section Calculator</h1>
+        <form id="sectionForm">
+            <label for="pages">Enter the number of pages in the book:</label>
+            <input type="number" id="pages" name="pages" min="1" required>
+            <button type="submit">Calculate Sections</button>
+        </form>
+        <div class="results" id="results"></div>
+    </div>
 
-    </form>
+    <script>
+        document.getElementById('sectionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let pages = parseInt(document.getElementById('pages').value);
 
-    <script src="sections.js"></script>
+            const scenarios = [
+                [32, 16, 8, 4],   // 32s
+                [24, 12, 8, 4],   // 24s
+                [16, 8, 4],       // 16s
+                [12, 8, 4],       // 12s
+                [8, 4]            // 8s
+            ];
+
+            const scenarioNames = ["32s", "24s", "16s", "12s", "8s"];
+
+            let resultsHTML = "<h2>Results</h2>";
+
+            scenarios.forEach((scenario, index) => {
+                let remainingPages = pages;
+                resultsHTML += `<div class="scenario"><h3>${scenarioNames[index]}:</h3>`;
+                
+                scenario.forEach(section => {
+                    const sectionsNeeded = Math.floor(remainingPages / section);
+                    if (sectionsNeeded > 0) {
+                        resultsHTML += `<p>${sectionsNeeded} x ${section}-page section(s)</p>`;
+                        remainingPages -= sectionsNeeded * section;
+                    }
+                });
+
+                // Only show remaining pages if there are less than 4 pages left
+                if (remainingPages > 0 && remainingPages < 4) {
+                    resultsHTML += `<p class="remaining-pages">Remaining pages: ${remainingPages} (requires custom or smaller section)</p>`;
+                }
+
+                resultsHTML += `</div>`;
+            });
+
+            document.getElementById('results').innerHTML = resultsHTML;
+        });
+    </script>
+</body>
 
 
-</div>
+
+
+
+
 
 
 
