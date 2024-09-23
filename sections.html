@@ -43,9 +43,7 @@
 
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Section Calculator</title>
+    <h2>Book Section Calculator</h2>
     <style>
         .container {
             max-width: 600px;
@@ -57,18 +55,18 @@
         }
         label, input, button {
             display: block;
-            width: 100%;
+            width: 33%;
             margin-bottom: 10px;
         }
         button {
-            background-color: #007BFF;
+            background-color: darkblue;
             color: white;
             padding: 10px;
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: blue;
         }
         .results p {
             margin: 5px 0;
@@ -83,10 +81,10 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Book Section Calculator</h1>
+    <div class="body-text">
+        <h2>SECTION CALCULATOR</h2>
         <form id="sectionForm">
-            <label for="pages">Enter the number of pages in the book:</label>
+            <label for="pages">Number of pages:</label>
             <input type="number" id="pages" name="pages" min="1" required>
             <button type="submit">Calculate Sections</button>
         </form>
@@ -108,7 +106,7 @@
 
             const scenarioNames = ["32s", "24s", "16s", "12s", "8s"];
 
-            let resultsHTML = "<h2>Results</h2>";
+            let resultsHTML = "<h2>RESULTS</h2>";
 
             scenarios.forEach((scenario, index) => {
                 let remainingPages = pages;
@@ -117,7 +115,7 @@
                 scenario.forEach(section => {
                     const sectionsNeeded = Math.floor(remainingPages / section);
                     if (sectionsNeeded > 0) {
-                        resultsHTML += `<p>${sectionsNeeded} x ${section}-page section(s)</p>`;
+                        resultsHTML += `<p>${sectionsNeeded} x ${section}pp section(s)</p>`;
                         remainingPages -= sectionsNeeded * section;
                     }
                 });
