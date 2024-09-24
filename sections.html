@@ -106,7 +106,7 @@
 
             const scenarioNames = ["32s", "24s", "16s", "12s", "8s"];
 
-            let resultsHTML = "<h2>RESULTS</h2>";
+            let resultsHTML = "<h2><p>RESULTS:</h2>";
 
             scenarios.forEach((scenario, index) => {
                 let remainingPages = pages;
@@ -122,7 +122,7 @@
 
                 // Only show remaining pages if there are less than 4 pages left
                 if (remainingPages > 0 && remainingPages < 4) {
-                    resultsHTML += `<p class="remaining-pages">Remaining pages: ${remainingPages} (requires custom or smaller section)</p>`;
+                    resultsHTML += `<p class="remaining-pages">Remaining pages: ${remainingPages} </p>`;
                 }
 
                 resultsHTML += `</div>`;
