@@ -55,7 +55,7 @@ form.addEventListener('submit', function (e) {
         //Euro pallets
         Math.ceil(noofboxes / 72) + " x Euro Pallets - 1200mm (l) x 800mm (w) x 1100mm (h)<br>72 x 8kg boxes per pallet - 586kg per pallet<br><br>" +
         //B1 pallets
-        Math.ceil(noofboxes / 45) + " x B1 Pallets - 1020mm (l) x 720mm (w) x 920mm (h)<br>45 x 8kg boxes per pallet - 370kgkg per pallet<br><br>" +
+        Math.ceil(noofboxes / 45) + " x B1 Pallets - 1020mm (l) x 720mm (w) x 920mm (h)<br>45 x 8kg boxes per pallet - 370kg per pallet<br><br>" +
         //S1 pallets
         Math.ceil(noofboxes / 40) + " x SRA1 Pallets - 900mm (l) x 640mm (w) x 920mm (h)<br>40 x 8kg boxes per pallet - 330kg per pallet<br><br>";
 

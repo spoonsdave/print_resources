@@ -11,7 +11,9 @@
 
 
 <div class="sidebar">
-    <div><h2>CALCULATORS</h2></div>
+    <div>
+        <h2>CALCULATORS</h2>
+    </div>
     <div><a href="quantity2.html">Quantity Calculator</a></div>
     <div><a href="runon.html">Run On Calculator</a></div>
     <div><a href="spine.html">Spine Width Calculator</a></div>
@@ -20,7 +22,7 @@
     <div><a href="sections.html">Section Calculator</a></div>
     <div><a href="grid.html">Hardback Cover Grid Builder</a></div>
     <div><a href="jacket.html">Hardback Jacket Grid Builder</a></div>
-    <div><a href="case_matrix.html">Hardback Price Calculator</a></div>
+    <div><a href="softback_grid.html">Softback Cover Grid Builder</a></div>
     <div>
         <h2>PHONE NUMBERS</h2>
     </div>
@@ -40,6 +42,25 @@
 
 
 
+<style>
+    label, button {
+       display: block;
+       width: 33%;
+       margin-bottom: 10px;
+   }
+   button {
+       background-color: darkblue;
+       color: white;
+       padding: 10px;
+       border: none;
+       cursor: pointer;
+   }
+   button:hover {
+       background-color: blue;
+   }
+</style>
+
+
 
 <div class="body-text">
     <!-- body content -->
@@ -52,8 +73,6 @@
         <p><label>Text Width: </label><input type="text" id="textWidth"></p>
         <p><label>No. of text pages: </label><input type="text" id="text_pp"></p>
         <p><label>Text microns: </label><input type="text" id="text_mic"></p>
-        <p><label>Binding: </label><input type="radio" name="binding" value="PUR">PUR
-            <input type="radio" name="binding" value="SEWN" checked>SEWN
         <p><label>Cover: </label><input type="radio" name="cover" value="thin"checked>2.25mm
             <input type="radio" name="cover" value="thick">3mm
         </p>
