@@ -120,7 +120,8 @@
                 Page Width: ${textWidth}mm<br>
                 Total Width: ${totalWidth}mm<br>
                 Page Height: ${textHeight}mm<br>
-                Spine Width: ${spineWidth}mm
+                Spine Width: ${spineWidth}mm<br>
+                + 3mm bleed required on all edges
             `;
 
             // Get canvas and context
@@ -167,6 +168,17 @@
             ctx.fillText(`${textHeight}mm`, startX + 40, startY + textHeight / 2);
         }
     </script>
+
+<script src="jacket_script.js"></script>
+<P><strong>GSM to MIC conversions</strong></P>
+<p onclick="silk()" style="cursor:pointer;">SILK</p>
+<div id="silk"> </div>
+<p onclick="gloss()" style="cursor:pointer;">GLOSS</p>
+<div id="gloss"> </div>
+<p onclick="uncoated()" style="cursor:pointer;">UNCOATED</p>
+<div id="uncoated"> </div>
+
+
 
 </div>
 
