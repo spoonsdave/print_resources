@@ -85,92 +85,96 @@
     <div id="resultArea" class="result"></div>
 </div>
 
-<script>
-    const inputArea = document.getElementById('inputArea');
-    const resultArea = document.getElementById('resultArea');
+    <script>
+        const inputArea = document.getElementById('inputArea');
+        const resultArea = document.getElementById('resultArea');
 
-    let lastResult = 0;  // Store last result to continue calculations
-    let variables = {};  // Object to store variables
+        let lastResult = 0;  // Store last result to continue calculations
+        let variables = {};  // Object to store variables
 
-    function calculateExpression(expression) {
-        try {
-            // Replace any variables in the expression with their values
-            const replacedExpression = expression.replace(/\b[A-Za-z_]\w*\b/g, match => {
-                if (variables.hasOwnProperty(match)) {
-                    return variables[match];  // Replace the variable with its value
+        function calculateExpression(expression) {
+            try {
+                // Replace any variables in the expression with their values
+                const replacedExpression = expression.replace(/\b[A-Za-z_]\w*\b/g, match => {
+                    if (variables.hasOwnProperty(match)) {
+                        return variables[match];  // Replace the variable with its value
+                    }
+                    return match;  // Keep the same string if it's not a variable
+                });
+
+                // If the expression starts with an operator, prepend the last result
+                const validExpression = /^[+\-*/]/.test(replacedExpression) 
+                    ? `${lastResult}${replacedExpression}`
+                    : replacedExpression;
+
+                // Evaluate the replaced expression and return the result
+                const result = eval(validExpression);
+                lastResult = result;  // Update the last result
+                return result;
+            } catch (e) {
+                return "Error";  // Handle invalid expressions
+            }
+        }
+
+        // Listen for key presses and update the result dynamically
+        inputArea.addEventListener('input', () => {
+            const lines = inputArea.value.split('\n');
+            let results = [];
+            lastResult = 0;  // Reset lastResult when starting new input
+
+            lines.forEach((line, index) => {
+                line = line.trim();
+
+                if (line) {
+                    // Check if the line defines a variable (e.g., A = 2)
+                    const variableMatch = line.match(/^([A-Za-z_]\w*)\s*=\s*(.+)$/);
+                    if (variableMatch) {
+                        // Store the variable and its value
+                        const variableName = variableMatch[1];
+                        const variableValue = calculateExpression(variableMatch[2]);
+                        if (variableValue !== "Error") {
+                            variables[variableName] = variableValue;
+                        }
+                        results.push(`${variableName} = ${variableValue}`);
+                    } else if (variables.hasOwnProperty(line)) {
+                        // If only a variable name is typed, show its value
+                        results.push(variables[line]);
+                    } else {
+                        // If it's a regular expression, calculate it
+                        const expressionResult = calculateExpression(line);
+                        results.push(expressionResult);
+                    }
+                } else {
+                    results.push('');  // Keep empty lines for formatting
                 }
-                return match;  // Keep the same string if it's not a variable
             });
 
-            // Evaluate the replaced expression and return the result
-            return eval(replacedExpression);
-        } catch (e) {
-            return "Error";  // Handle invalid expressions
-        }
-    }
+            // Show results in resultArea
+            resultArea.textContent = results.join('\n');
 
-    // Listen for key presses and update the result dynamically
-    inputArea.addEventListener('input', () => {
-        const lines = inputArea.value.split('\n');
-        let results = [];
-        lastResult = 0;  // Reset lastResult when starting new input
-
-        lines.forEach((line, index) => {
-            line = line.trim();
-
-            if (line) {
-                // Check if the line defines a variable (e.g., A = 2)
-                const variableMatch = line.match(/^([A-Za-z_]\w*)\s*=\s*(.+)$/);
-                if (variableMatch) {
-                    // Store the variable and its value
-                    const variableName = variableMatch[1];
-                    const variableValue = calculateExpression(variableMatch[2]);
-                    if (variableValue !== "Error") {
-                        variables[variableName] = variableValue;
-                    }
-                    results.push(`${variableName} = ${variableValue}`);
-                } else if (variables.hasOwnProperty(line)) {
-                    // If only a variable name is typed, show its value
-                    results.push(variables[line]);
-                } else {
-                    // If it's a regular expression, calculate it
-                    const expressionResult = calculateExpression(line);
-                    lastResult = expressionResult !== "Error" ? expressionResult : lastResult;
-                    results.push(expressionResult);
-                }
-            } else {
-                results.push('');  // Keep empty lines for formatting
-            }
+            // Save the input, result, and variables in localStorage
+            localStorage.setItem('calculatorInput', inputArea.value);
+            localStorage.setItem('calculatorResult', resultArea.textContent);
+            localStorage.setItem('calculatorVariables', JSON.stringify(variables));
         });
 
-        // Show results in resultArea
-        resultArea.textContent = results.join('\n');
+        // Load from localStorage on page load
+        window.onload = () => {
+            const savedInput = localStorage.getItem('calculatorInput');
+            const savedResult = localStorage.getItem('calculatorResult');
+            const savedVariables = localStorage.getItem('calculatorVariables');
 
-        // Save the input, result, and variables in localStorage
-        localStorage.setItem('calculatorInput', inputArea.value);
-        localStorage.setItem('calculatorResult', resultArea.textContent);
-        localStorage.setItem('calculatorVariables', JSON.stringify(variables));
-    });
-
-    // Load from localStorage on page load
-    window.onload = () => {
-        const savedInput = localStorage.getItem('calculatorInput');
-        const savedResult = localStorage.getItem('calculatorResult');
-        const savedVariables = localStorage.getItem('calculatorVariables');
-
-        if (savedInput && savedResult) {
-            inputArea.value = savedInput;
-            resultArea.textContent = savedResult;
-        }
-        if (savedVariables) {
-            variables = JSON.parse(savedVariables);
-        }
-    };
-</script>
+            if (savedInput && savedResult) {
+                inputArea.value = savedInput;
+                resultArea.textContent = savedResult;
+            }
+            if (savedVariables) {
+                variables = JSON.parse(savedVariables);
+            }
+        };
+    </script>
 </body>
-
-
-
+</html>
 
 
 
