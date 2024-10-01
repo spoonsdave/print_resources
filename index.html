@@ -49,13 +49,6 @@
 
 <title>Notepad Calculator with Variables</title>
 <style>
-
-    table, th, td {
-        border: 1px solid white;
-        border-collapse: collapse;
-        background-color: lightgrey;
-    }
-
     .container {
         padding-left: 270px;
         padding-top: 25px;
@@ -64,7 +57,6 @@
         gap: 10px;
         width: 900px;
     }
-
     .body-text {
         font-family: 'Roboto Mono', monospace;
         font-size: 14px;
@@ -72,7 +64,6 @@
         top: 25px;
         right: 25px;
     }
-
     textarea, .result {
         padding: 10px;
         border: 1px solid #ccc;
@@ -84,108 +75,104 @@
         box-sizing: border-box;
         color: darkblue;
     }
-
     textarea {
         resize: none;
     }
-
     .result {
         background-color: #f9f9f9;
         white-space: pre-wrap;
     }
 </style>
 </head>
-
 <body>
-    <div class="container">
-        <textarea id="inputArea" placeholder="Type your query here..."></textarea>
-        <div id="resultArea" class="result"></div>
-    </div>
+<div class="container">
+    <textarea id="inputArea" placeholder="Type your query here..."></textarea>
+    <div id="resultArea" class="result"></div>
+</div>
 
-    <script>
-        const inputArea = document.getElementById('inputArea');
-        const resultArea = document.getElementById('resultArea');
+<script>
+    const inputArea = document.getElementById('inputArea');
+    const resultArea = document.getElementById('resultArea');
 
-        let lastResult = 0;  // Store last result to continue calculations
-        let variables = {};  // Object to store variables
+    let lastResult = 0;  // Store last result to continue calculations
+    let variables = {};  // Object to store variables
 
-        function calculateExpression(expression) {
-            try {
-                // Replace any variables in the expression with their values
-                const replacedExpression = expression.replace(/\b[A-Za-z_]\w*\b/g, match => {
-                    if (variables.hasOwnProperty(match)) {
-                        return variables[match];  // Replace the variable with its value
-                    }
-                    return match;  // Keep the same string if it's not a variable
-                });
-
-                // Evaluate the replaced expression and return the result
-                return eval(replacedExpression);
-            } catch (e) {
-                return '';  // Return empty string instead of "Error"
-            }
-        }
-
-        // Listen for key presses and update the result dynamically
-        inputArea.addEventListener('input', () => {
-            const lines = inputArea.value.split('\n');
-            let results = [];
-            lastResult = 0;  // Reset lastResult when starting new input
-
-            lines.forEach((line, index) => {
-                line = line.trim();
-
-                if (line) {
-                    // Check if the line defines a variable (e.g., A = 2)
-                    const variableMatch = line.match(/^([A-Za-z_]\w*)\s*=\s*(.+)$/);
-                    if (variableMatch) {
-                        const variableName = variableMatch[1];
-                        const variableValue = calculateExpression(variableMatch[2]);
-                        if (variableValue !== '') {
-                            variables[variableName] = variableValue;
-                        }
-                        results.push(`${variableName} = ${variableValue}`);
-                    } else if (variables.hasOwnProperty(line)) {
-                        // If only a variable name is typed, show its value
-                        results.push(variables[line]);
-                    } else {
-                        // If it's a regular expression, calculate it
-                        const currentExpression = line.match(/^[+\-*/]/) ? lastResult + line : line;
-                        const expressionResult = calculateExpression(currentExpression);
-                        lastResult = expressionResult !== '' ? expressionResult : lastResult;
-                        results.push(expressionResult);
-                    }
-                } else {
-                    results.push('');  // Keep empty lines for formatting
+    function calculateExpression(expression) {
+        try {
+            // Replace any variables in the expression with their values
+            const replacedExpression = expression.replace(/\b[A-Za-z_]\w*\b/g, match => {
+                if (variables.hasOwnProperty(match)) {
+                    return variables[match];  // Replace the variable with its value
                 }
+                return match;  // Keep the same string if it's not a variable
             });
 
-            resultArea.textContent = results.join('\n');
+            // Evaluate the replaced expression and return the result
+            return eval(replacedExpression);
+        } catch (e) {
+            return '';  // Return empty string instead of "Error"
+        }
+    }
 
-            // Save the input, result, and variables in localStorage
-            localStorage.setItem('calculatorInput', inputArea.value);
-            localStorage.setItem('calculatorResult', resultArea.textContent);
-            localStorage.setItem('calculatorVariables', JSON.stringify(variables));
+    // Listen for key presses and update the result dynamically
+    inputArea.addEventListener('input', () => {
+        const lines = inputArea.value.split('\n');
+        let results = [];
+        lastResult = 0;  // Reset lastResult when starting new input
+
+        lines.forEach((line, index) => {
+            line = line.trim();
+
+            if (line) {
+                // Check if the line defines a variable (e.g., A = 2)
+                const variableMatch = line.match(/^([A-Za-z_]\w*)\s*=\s*(.+)$/);
+                if (variableMatch) {
+                    const variableName = variableMatch[1];
+                    const variableValue = calculateExpression(variableMatch[2]);
+                    if (variableValue !== '') {
+                        variables[variableName] = variableValue;
+                    }
+                    results.push(`${variableName} = ${variableValue}`);
+                } else if (variables.hasOwnProperty(line)) {
+                    // If only a variable name is typed, show its value
+                    results.push(variables[line]);
+                } else {
+                    // If it's a regular expression, calculate it
+                    const currentExpression = line.match(/^[+\-*/]/) ? lastResult + line : line;
+                    const expressionResult = calculateExpression(currentExpression);
+                    lastResult = expressionResult !== '' ? expressionResult : lastResult;
+                    results.push(expressionResult);
+                }
+            } else {
+                results.push('');  // Keep empty lines for formatting
+            }
         });
 
-        // Load from localStorage on page load
-        window.onload = () => {
-            const savedInput = localStorage.getItem('calculatorInput');
-            const savedResult = localStorage.getItem('calculatorResult');
-            const savedVariables = localStorage.getItem('calculatorVariables');
+        resultArea.textContent = results.join('\n');
 
-            if (savedInput && savedResult) {
-                inputArea.value = savedInput;
-                resultArea.textContent = savedResult;
-            }
-            if (savedVariables) {
-                variables = JSON.parse(savedVariables);
-            }
-        };
-    </script>
+        // Save the input, result, and variables in localStorage
+        localStorage.setItem('calculatorInput', inputArea.value);
+        localStorage.setItem('calculatorResult', resultArea.textContent);
+        localStorage.setItem('calculatorVariables', JSON.stringify(variables));
+    });
+
+    // Load from localStorage on page load
+    window.onload = () => {
+        const savedInput = localStorage.getItem('calculatorInput');
+        const savedResult = localStorage.getItem('calculatorResult');
+        const savedVariables = localStorage.getItem('calculatorVariables');
+
+        if (savedInput && savedResult) {
+            inputArea.value = savedInput;
+            resultArea.textContent = savedResult;
+        }
+        if (savedVariables) {
+            variables = JSON.parse(savedVariables);
+        }
+    };
+</script>
 
 </body>
-
 </html>
 
 
@@ -202,99 +189,98 @@
 
     <table>
         <tr>
-            <td style="padding-right:50px; padding-top:10px"></td>
-            <td style="padding-right:50px; padding-top:10px"><strong>Extension</strong></td>
-            <td style="padding-right:50px; padding-top:10px"><strong>Mobile</strong></td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"></td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"><strong>Extension</strong></td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"><strong>Mobile</strong></td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Barry Boone</td>
-            <td style="padding-right:50px; padding-top:10px">233</td>
-            <td style="padding-right:50px; padding-top:10px">505</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Barry Boone</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">233</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">505</td>
         </tr>
         <tr></tr>
-        <tr>
-            <td style="padding-right:50px; padding-top:10px">Chris Cowley</td>
-            <td style="padding-right:50px; padding-top:10px">239</td>
-            <td style="padding-right:50px; padding-top:10px"> </td>
+            <tr>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Chris Cowley</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">239</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"> </td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">David Horrex</td>
-            <td style="padding-right:50px; padding-top:10px">241</td>
-            <td style="padding-right:50px; padding-top:10px"> </td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">David Horrex</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">241</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"> </td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Dave Spooner</td>
-            <td style="padding-right:50px; padding-top:10px">301</td>
-            <td style="padding-right:50px; padding-top:10px">501</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Dave Spooner</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">301</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">501</td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Despatch</td>
-            <td style="padding-right:50px; padding-top:10px">312</td>
-            <td style="padding-right:50px; padding-top:10px"> </td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Despatch</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">312</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"> </td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Digi Repro</td>
-            <td style="padding-right:50px; padding-top:10px">244</td>
-            <td style="padding-right:50px; padding-top:10px"> </td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Digi Repro</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">244</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"> </td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Donna Edge</td>
-            <td style="padding-right:50px; padding-top:10px">245</td>
-            <td style="padding-right:50px; padding-top:10px"> </td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Donna Edge</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">245</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"> </td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Jackie Bull</td>
-            <td style="padding-right:50px; padding-top:10px">319</td>
-            <td style="padding-right:50px; padding-top:10px"> </td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Jackie Bull</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">319</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"> </td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">James Baxter</td>
-            <td style="padding-right:50px; padding-top:10px">224</td>
-            <td style="padding-right:50px; padding-top:10px">028</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">James Baxter</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">224</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">028</td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">John Seager</td>
-            <td style="padding-right:50px; padding-top:10px">318</td>
-            <td style="padding-right:50px; padding-top:10px">503</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">John Seager</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">318</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">503</td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Kevin Ames</td>
-            <td style="padding-right:50px; padding-top:10px">308</td>
-            <td style="padding-right:50px; padding-top:10px">506</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Kevin Ames</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">308</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">506</td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Mark Banthorpe</td>
-            <td style="padding-right:50px; padding-top:10px"> </td>
-            <td style="padding-right:50px; padding-top:10px">033</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Mark Banthorpe</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"> </td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">033</td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Nathan Moore</td>
-            <td style="padding-right:50px; padding-top:10px">303</td>
-            <td style="padding-right:50px; padding-top:10px">605</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Nathan Moore</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">303</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">605</td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Rebecca Munro</td>
-            <td style="padding-right:50px; padding-top:10px">305</td>
-            <td style="padding-right:50px; padding-top:10px"></td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Rebecca Munro</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">305</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"></td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Tracey Bean</td>
-            <td style="padding-right:50px; padding-top:10px">309</td>
-            <td style="padding-right:50px; padding-top:10px"></td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Tracey Bean</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">309</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"></td>
         </tr>
         <tr>
-            <td style="padding-right:50px; padding-top:10px">Darren</td>
-            <td style="padding-right:50px; padding-top:10px"></td>
-            <td style="padding-right:50px; padding-top:10px">594</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">Darren</td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue"></td>
+            <td style="padding-right:50px; padding-top:10px; border-bottom: 0.5px solid lightblue">594</td>
         </tr>
     </table>
 
 
     </p>
 
-    </td>
+</td>
 </div>
-
 
 
 
@@ -305,10 +291,8 @@
         <tr>
             <td style="text-align: left;">
                 <a href="index.html">
-                    <H1><strong>
-                            <font color="darkblue">
-                                <<< HOME</strong>
-                            </font>
+                    <H1><strong><font color="darkblue">
+                            <<< HOME</strong></font>
                 </a></H1>
             </td>
             <td style="text-align: right;">
@@ -334,8 +318,7 @@
                             GetClock();
                             setInterval(GetClock, 1000);
                         </script>
-                </strong></H3>
-            </td>
+                </strong></H3></td>
         </tr>
     </table>
 </footer>
