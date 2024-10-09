@@ -51,19 +51,14 @@
     .container {
         padding-left: 270px;
         padding-top: 25px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        justify-content: space-between;
         gap: 10px;
-        width: 900px;
     }
-    .phonelist {
-        font-weight: 500;
-        text-align: center;
-        font-family: 'Roboto Mono', monospace;
-        font-size: 14px;
-        position: fixed;
-        top: 25px;
-        right: 25px;
+    .column {
+      padding: 5px;
+      width: 33%;
+      box-sizing: border-box;
     }
     textarea, .result {
         padding: 10px;
@@ -75,8 +70,6 @@
         width: 100%;
         box-sizing: border-box;
         color: darkblue;
-    }
-    textarea {
         resize: none;
     }
     .result {
@@ -84,7 +77,8 @@
         white-space: pre-wrap;
     }
     .phonelist, td{
-        padding-right:50px;
+        padding-left:20px;
+        padding-right:20px;
         padding-top:5px;
         padding-bottom:5px;
         border-bottom:0.5px, solid lightblue;
@@ -97,8 +91,100 @@
 </head>
 <body>
 <div class="container">
-    <textarea id="inputArea" placeholder="Type your query here..."></textarea>
-    <div id="resultArea" class="result"></div>
+    <div class="column">
+        <textarea id="inputArea" placeholder="Type your query here..."></textarea>
+
+
+
+    </div>
+      <div class="column">
+
+        <div id="resultArea" class="result"></div>
+
+
+      </div>
+      <div class="column">
+
+
+        <table>
+                <h2>- STAFF PHONE NUMBERS -</h2>
+
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Barry Boone</td>
+                <td style="border-bottom: 0.5px solid lightblue">233</td>
+            </tr>
+            <tr></tr>
+                <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Chris Cowley</td>
+                <td style="border-bottom: 0.5px solid lightblue">239</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">David Horrex</td>
+                <td style="border-bottom: 0.5px solid lightblue">241</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Dave Spooner</td>
+                <td style="border-bottom: 0.5px solid lightblue">301</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Despatch</td>
+                <td style="border-bottom: 0.5px solid lightblue">312</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Digi Press</td>
+                <td style="border-bottom: 0.5px solid lightblue">235</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Digi Repro</td>
+                <td style="border-bottom: 0.5px solid lightblue">244</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Donna Edge</td>
+                <td style="border-bottom: 0.5px solid lightblue">245</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Jackie Bull</td>
+                <td style="border-bottom: 0.5px solid lightblue">300</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">James Baxter</td>
+                <td style="border-bottom: 0.5px solid lightblue">224</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Jingjing Qi</td>
+                <td style="border-bottom: 0.5px solid lightblue">310</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">John Seager</td>
+                <td style="border-bottom: 0.5px solid lightblue">318</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Kevin Ames</td>
+                <td style="border-bottom: 0.5px solid lightblue">308</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Nathan Moore</td>
+                <td style="border-bottom: 0.5px solid lightblue">303</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Rebecca Munro</td>
+                <td style="border-bottom: 0.5px solid lightblue">305</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Tracey Bean</td>
+                <td style="border-bottom: 0.5px solid lightblue">309</td>
+            </tr>
+        </table>
+    
+
+      </div>
+  
+
+
+
+
+
+
 </div>
 
 <script>
@@ -190,86 +276,6 @@
 
 
 
-
-
-
-
-<div class="phonelist">
-    <!-- body content -->
-    <h2>STAFF EXTENSION PHONE NUMBERS</h2>
-
-    <table>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Barry Boone</td>
-            <td style="border-bottom: 0.5px solid lightblue">233</td>
-        </tr>
-        <tr></tr>
-            <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Chris Cowley</td>
-            <td style="border-bottom: 0.5px solid lightblue">239</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">David Horrex</td>
-            <td style="border-bottom: 0.5px solid lightblue">241</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Dave Spooner</td>
-            <td style="border-bottom: 0.5px solid lightblue">301</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Despatch</td>
-            <td style="border-bottom: 0.5px solid lightblue">312</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Digi Press</td>
-            <td style="border-bottom: 0.5px solid lightblue">235</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Digi Repro</td>
-            <td style="border-bottom: 0.5px solid lightblue">244</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Donna Edge</td>
-            <td style="border-bottom: 0.5px solid lightblue">245</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Jackie Bull</td>
-            <td style="border-bottom: 0.5px solid lightblue">300</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">James Baxter</td>
-            <td style="border-bottom: 0.5px solid lightblue">224</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Jingjing Qi</td>
-            <td style="border-bottom: 0.5px solid lightblue">310</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">John Seager</td>
-            <td style="border-bottom: 0.5px solid lightblue">318</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Kevin Ames</td>
-            <td style="border-bottom: 0.5px solid lightblue">308</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Nathan Moore</td>
-            <td style="border-bottom: 0.5px solid lightblue">303</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Rebecca Munro</td>
-            <td style="border-bottom: 0.5px solid lightblue">305</td>
-        </tr>
-        <tr>
-            <td style="border-bottom: 0.5px solid lightblue">Tracey Bean</td>
-            <td style="border-bottom: 0.5px solid lightblue">309</td>
-        </tr>
-    </table>
-
-    </p>
-
-</td>
-</div>
 
 
 
