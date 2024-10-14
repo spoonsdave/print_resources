@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Print Stuff</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<div class="sidebar">
+    <div>
+        <h2>CALCULATORS</h2>
+    </div>
+    <div><a href="quantity2.html" target="_blank">Quantity Calculator</a></div>
+    <div><a href="runon.html" target="_blank">Run On Calculator</a></div>
+    <div><a href="spine.html" target="_blank">Spine Width Calculator</a></div>
+    <div><a href="weight.html" target="_blank">Weight Calculator</a></div>
+    <div><a href="paper_cost.html" target="_blank">Paper Cost Calculator</a></div>
+    <div><a href="sections.html" target="_blank">Section Calculator</a></div>
+    <div><a href="grid.html" target="_blank">Hardback Cover Grid Builder</a></div>
+    <div><a href="jacket.html" target="_blank">Hardback Jacket Grid Builder</a></div>
+    <div><a href="softback_grid.html" target="_blank">Softback Cover Grid Builder</a></div>
+    <div>
+        <h2>PHONE NUMBERS</h2>
+    </div>
+    <div><a href="speed_dial.html" target="_blank">Company Speed Dial Numbers</a></div>
+    <div>
+        <h2>MISC INFO</h2>
+    </div>
+    <div><a href="suppliers.html" target="_blank">Suppliers & Services</a></div>
+    <div><a href="machines.html" target="_blank">Machine Specs</a></div>
+    <div><a href="max_folding_weights.html" target="_blank">Max Folding Weights</a></div>
+    <div><a href="vatable.html" target="_blank">Is it VATable?</a></div>
+    <div><a href="book_sizes.html" target="_blank">Standard Book Sizes</a></div>
+    <div><a href="envelopes.html" target="_blank">Standard Envelope Sizes</a></div>
+    <div><a href="greetings_cards.html" target="_blank">Standard Greetings Card Sizes</a></div>
+</div>
+
+
+
+
+
+
+
+
+<title>Notepad Calculator with Variables</title>
+<style>
+    .container {
+        padding-left: 270px;
+        padding-top: 25px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    .column {
+      padding: 5px;
+      width: 33%;
+      box-sizing: border-box;
+    }
+    textarea, .result {
+        padding: 10px;
+        border: 1px solid #ccc;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 14px;
+        font-weight: 560;
+        height: 600px;
+        width: 100%;
+        box-sizing: border-box;
+        color: darkblue;
+        resize: none;
+    }
+    .result {
+        background-color: #f9f9f9;
+        white-space: pre-wrap;
+    }
+    .phonelist, td{
+        padding-left:20px;
+        padding-right:20px;
+        padding-top:5px;
+        padding-bottom:5px;
+        border-bottom:0.5px, solid lightblue;
+    }
+
+
+
+
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="column">
+        <textarea id="inputArea" placeholder="Type your query here..."></textarea>
+
+
+
+    </div>
+      <div class="column">
+
+        <div id="resultArea" class="result"></div>
+
+
+      </div>
+      <div class="column">
+
+
+        <table>
+                <h2>- STAFF PHONE NUMBERS -</h2>
+
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Barry Boone</td>
+                <td style="border-bottom: 0.5px solid lightblue">233</td>
+            </tr>
+            <tr></tr>
+                <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Chris Cowley</td>
+                <td style="border-bottom: 0.5px solid lightblue">239</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">David Horrex</td>
+                <td style="border-bottom: 0.5px solid lightblue">241</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Dave Spooner</td>
+                <td style="border-bottom: 0.5px solid lightblue">301</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Despatch</td>
+                <td style="border-bottom: 0.5px solid lightblue">312</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Digi Press</td>
+                <td style="border-bottom: 0.5px solid lightblue">235</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Digi Repro</td>
+                <td style="border-bottom: 0.5px solid lightblue">244</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Donna Edge</td>
+                <td style="border-bottom: 0.5px solid lightblue">245</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Jackie Bull</td>
+                <td style="border-bottom: 0.5px solid lightblue">300</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">James Baxter</td>
+                <td style="border-bottom: 0.5px solid lightblue">224</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Jingjing Qi</td>
+                <td style="border-bottom: 0.5px solid lightblue">310</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">John Seager</td>
+                <td style="border-bottom: 0.5px solid lightblue">318</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Kevin Ames</td>
+                <td style="border-bottom: 0.5px solid lightblue">308</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Nathan Moore</td>
+                <td style="border-bottom: 0.5px solid lightblue">303</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Rebecca Munro</td>
+                <td style="border-bottom: 0.5px solid lightblue">305</td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0.5px solid lightblue">Tracey Bean</td>
+                <td style="border-bottom: 0.5px solid lightblue">309</td>
+            </tr>
+        </table>
+    
+
+      </div>
+  
+
+
+
+
+
+
+</div>
+
+<script>
+    const inputArea = document.getElementById('inputArea');
+    const resultArea = document.getElementById('resultArea');
+
+    let lastResult = 0;  // Store last result to continue calculations
+    let variables = {};  // Object to store variables
+
+    function calculateExpression(expression) {
+        try {
+            // Replace any variables in the expression with their values
+            const replacedExpression = expression.replace(/\b[A-Za-z_]\w*\b/g, match => {
+                if (variables.hasOwnProperty(match)) {
+                    return variables[match];  // Replace the variable with its value
+                }
+                return match;  // Keep the same string if it's not a variable
+            });
+
+            // Evaluate the replaced expression and return the result
+            return eval(replacedExpression);
+        } catch (e) {
+            return '';  // Return empty string instead of "Error"
+        }
+    }
+
+    // Listen for key presses and update the result dynamically
+    inputArea.addEventListener('input', () => {
+        const lines = inputArea.value.split('\n');
+        let results = [];
+        lastResult = 0;  // Reset lastResult when starting new input
+
+        lines.forEach((line, index) => {
+            line = line.trim();
+
+            if (line) {
+                // Check if the line defines a variable (e.g., A = 2)
+                const variableMatch = line.match(/^([A-Za-z_]\w*)\s*=\s*(.+)$/);
+                if (variableMatch) {
+                    const variableName = variableMatch[1];
+                    const variableValue = calculateExpression(variableMatch[2]);
+                    if (variableValue !== '') {
+                        variables[variableName] = variableValue;
+                    }
+                    results.push(`${variableName} = ${variableValue}`);
+                } else if (variables.hasOwnProperty(line)) {
+                    // If only a variable name is typed, show its value
+                    results.push(variables[line]);
+                } else {
+                    // If it's a regular expression, calculate it
+                    const currentExpression = line.match(/^[+\-*/]/) ? lastResult + line : line;
+                    const expressionResult = calculateExpression(currentExpression);
+                    lastResult = expressionResult !== '' ? expressionResult : lastResult;
+                    results.push(expressionResult);
+                }
+            } else {
+                results.push('');  // Keep empty lines for formatting
+            }
+        });
+
+        resultArea.textContent = results.join('\n');
+
+        // Save the input, result, and variables in localStorage
+        localStorage.setItem('calculatorInput', inputArea.value);
+        localStorage.setItem('calculatorResult', resultArea.textContent);
+        localStorage.setItem('calculatorVariables', JSON.stringify(variables));
+    });
+
+    // Load from localStorage on page load
+    window.onload = () => {
+        const savedInput = localStorage.getItem('calculatorInput');
+        const savedResult = localStorage.getItem('calculatorResult');
+        const savedVariables = localStorage.getItem('calculatorVariables');
+
+        if (savedInput && savedResult) {
+            inputArea.value = savedInput;
+            resultArea.textContent = savedResult;
+        }
+        if (savedVariables) {
+            variables = JSON.parse(savedVariables);
+        }
+    };
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<footer>
+    <table style="width:100%">
+        <tr>
+            <td style="text-align: left;">
+                <a href="index.html">
+                    <H1><strong><font color="darkblue">
+                            <<< HOME</strong></font>
+                </a></H1>
+            </td>
+            <td style="text-align: right;">
+                <strong>
+                    <H3>
+                        <div id="clockbox"></div>
+                        <script type="text/javascript">
+                            var tday = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+                            var tmonth = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+                            function GetClock() {
+                                var d = new Date();
+                                var nday = d.getDay(), nmonth = d.getMonth(), ndate = d.getDate();
+                                var nhour = d.getHours(), nmin = d.getMinutes(), nsec = d.getSeconds(), ap;
+                                if (nhour == 0) { ap = " AM"; nhour = 12; }
+                                else if (nhour < 12) { ap = " AM"; }
+                                else if (nhour == 12) { ap = " PM"; }
+                                else if (nhour > 12) { ap = " PM"; nhour -= 12; }
+                                if (nmin <= 9) nmin = "0" + nmin;
+                                if (nsec <= 9) nsec = "0" + nsec;
+                                var clocktext = "" + tday[nday] + " " + ndate + " " + tmonth[nmonth] + " - " + nhour + ":" + nmin + ":" + nsec + ap + "";
+                                document.getElementById('clockbox').innerHTML = clocktext;
+                            }
+                            GetClock();
+                            setInterval(GetClock, 1000);
+                        </script>
+                </strong></H3></td>
+        </tr>
+    </table>
+</footer>
+
+</html>
