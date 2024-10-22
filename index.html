@@ -234,16 +234,16 @@
                     if (variableValue !== '') {
                         variables[variableName] = variableValue;
                     }
-                    results.push(`${variableName} = ${variableValue}`);
+                    results.push(`${variableName} = ${Number(variableValue).toLocaleString()}`);
                 } else if (variables.hasOwnProperty(line)) {
                     // If only a variable name is typed, show its value
-                    results.push(variables[line]);
+                    results.push(variables[line].toLocaleString());
                 } else {
                     // If it's a regular expression, calculate it
                     const currentExpression = line.match(/^[+\-*/]/) ? lastResult + line : line;
                     const expressionResult = calculateExpression(currentExpression);
                     lastResult = expressionResult !== '' ? expressionResult : lastResult;
-                    results.push(expressionResult);
+                    results.push(Number(expressionResult).toLocaleString());
                 }
             } else {
                 results.push('');  // Keep empty lines for formatting
